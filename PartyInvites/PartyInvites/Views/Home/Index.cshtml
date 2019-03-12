@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="text-center"> 
+        <h2>We're going to have an exciting party</h2>
+        <h3>(To do: sell it better. Add pictures or something.)</h3>
+
+        @Html.ActionLink("RSVP Form", "RsvpForm", null, new { @class = "btn btn-success"})
+    </div>
+</body>
+</html>
