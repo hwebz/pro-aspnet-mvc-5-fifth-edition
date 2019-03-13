@@ -5,12 +5,11 @@ using System.Web;
 
 namespace EssentialTools.Models
 {
-    public class ShoppingCart
+    public class ShoppingCartDiscount
     {
-        //private LinqValueCalculator calc;
-        private IValueCalculator calc;
+        private IValueCalculatorDiscount calc;
 
-        public ShoppingCart(IValueCalculator calcParam)
+        public ShoppingCartDiscount(IValueCalculatorDiscount calcParam)
         {
             calc = calcParam;
         }
