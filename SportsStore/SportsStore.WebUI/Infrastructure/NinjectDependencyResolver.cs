@@ -2,9 +2,11 @@
 using Moq;
 using Ninject;
 using SportsStore.Domain.Abstract;
+using SportsStore.Domain.Concrete;
 using SportsStore.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -33,6 +35,13 @@ namespace SportsStore.WebUI.Infrastructure
 
             //kernel.Bind<IProductsRepository>().ToConstant(mock.Object);
             kernel.Bind<IProductsRepository>().To<EFProductRepository>();
+
+            EmailSettings emailSettings = new EmailSettings
+            {
+                WriteAsFile = bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"] ?? "false")
+            };
+
+            kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings", emailSettings);
         }
 
         public object GetService(Type serviceType)
