@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ActionName</title>
+</head>
+<body>
+    <div>The controller is: @ViewBag.Controller</div>
+    <div>The action is: @ViewBag.Action</div>
+
+    <div>
+        @Html.ActionLink("This is an outgoing URL", "CustomVariable", new { id = "Hello" }, new { id = "myAnchorId", @class = "myCSSClass" }); @* ?id=xxx if you don't defined {id} segment in RouteConfig else /controller/action/id *@
+    </div>
+
+    <div>
+        @Html.ActionLink("This is another outgoing URL", "Index", "Home", "https", "myserver.mydomain.com", "myFragmentName", new { id = "MyId"}, new { id = "myAnchorID", @class = "myCSSClass" })
+    </div>
+
+    <div>
+        @Html.ActionLink("This targets another controller", "Index", "Admin") @* /Admin *@
+    </div>
+
+    <div>
+        @Html.ActionLink("Customer index", "Index", "Customer") @* /Users/Test *@ 
+    </div>
+
+    <div>
+        This is a URL:
+        @Url.Action("Index", "Home", new { id = "MyId" })
+    </div>
+
+    <div>
+        This is an URL:
+        @Html.ActionLink("Click me", "GetLegacyUrl", new { legacyUrl = "~/articles/Windows_3.1_Overview.html" })
+    </div>
+</body>
+</html>

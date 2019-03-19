@@ -1,0 +1,14 @@
+﻿@model string
+
+@{
+    ViewBag.Title = "GetLegacyUrl";
+    Layout = null;
+}
+
+<h2>GetLegacyUrl</h2>
+
+The URL requested was: @Model
+
+<div>@Html.ActionLink("Click me to go to the another area", "Index", "Home", new { area = "Admin" }, null)</div>
+<div>@Html.ActionLink("Click me to go to the another area", "Index", "Home", new { area = "" }, null)</div>
+

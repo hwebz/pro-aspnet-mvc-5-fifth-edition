@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Routing.Constraints;
 using System.Web.Routing;
+using UrlsAndRoutes.Infrastructure;
 
 namespace UrlsAndRoutes
 {
@@ -45,22 +47,65 @@ namespace UrlsAndRoutes
             //        action = "Index",
             //        id = UrlParameter.Optional
             //    }, new[] { "UrlsAndRoutes.AdditionalControllers", "UrlsAndRoutes.Controllers" }); // error because Route scan all namespaces
-            var myRoute = routes.MapRoute("AddControllerRoute", "Home/{action}/{id}/{*catchall}",
-                new
-                {
-                    controller = "Home",
-                    action = "Index",
-                    id = UrlParameter.Optional
-                }, new[] { "UrlsAndRoutes.AdditionalControllers" });
-            myRoute.DataTokens["UseNamespaceFallback"] = false;
 
-            routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
-                new
-                {
-                    controller = "Home",
-                    action = "Index",
-                    id = UrlParameter.Optional
-                }, new[] { "UrlsAndRoutes.Controllers" });
+            //Route myRoute = routes.MapRoute("AddControllerRoute", "Home/{action}/{id}/{*catchall}",
+            //    new
+            //    {
+            //        controller = "Home",
+            //        action = "Index",
+            //        id = UrlParameter.Optional
+            //    }, new[] { "UrlsAndRoutes.AdditionalControllers" });
+            //myRoute.DataTokens["UseNamespaceFallback"] = false;
+
+            //routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
+            //    new
+            //    {
+            //        controller = "Home",
+            //        action = "Index",
+            //        id = UrlParameter.Optional
+            //    }, new[] { "UrlsAndRoutes.Controllers" });
+
+            //routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
+            //        new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+            //        new {
+            //            controller = "^H.*",
+            //            action = "^Index$|^About$",
+            //            httpMethod = new HttpMethodConstraint("GET", "POST"),
+            //            //id = new RangeRouteConstraint(10, 20)
+            //            id = new CompoundRouteConstraint(new IRouteConstraint[]
+            //            {
+            //                new AlphaRouteConstraint(),
+            //                new MinLengthRouteConstraint(6)
+            //            })
+            //        },
+            //        new[] { "UrlsAndRoutes.Controllers" });
+
+            //routes.MapRoute("ChromeRoute", "{*catchall}",
+            //    new { controller = "Home", action = "Index" },
+            //    new { customConstraint = new UserAgentConstraint("Chrome") },
+            //    new[] { "UrlsAndRoutes.AdditionalControllers" });
+
+            //routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
+            //    new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+            //    new
+            //    {
+            //        controller = "^H.*",
+            //        action = "Index|About",
+            //        httpMethod = new HttpMethodConstraint("GET"),
+            //        id = new CompoundRouteConstraint(new IRouteConstraint[]
+            //        {
+            //            new AlphaRouteConstraint(),
+            //            new MinLengthRouteConstraint(6)
+            //        })
+            //    },
+            //    new[] { "UrlsAndRoutes.Controllers" });
+
+            // enable attribute routing
+            routes.MapMvcAttributeRoutes();
+
+            routes.MapRoute("Default", "{controller}/{action}/{id}",
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new[] { "UrlsAndRoutes.Controllers" });
         }
     }
 }
