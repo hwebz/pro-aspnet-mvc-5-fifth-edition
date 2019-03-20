@@ -1,0 +1,16 @@
+﻿@model DateTime
+@{
+    ViewBag.Title = "HomePage";
+    //DateTime time = (DateTime)TempData.Peek("Date");
+}
+
+<h2>HomePage</h2>
+
+@*The day is: @(((DateTime)Model).DayOfWeek)*@
+The day is: @Model.DayOfWeek
+
+<br />Message is: @ViewBag.Message
+<br />The day from ViewBag is: @(((DateTime)ViewBag.Date).DayOfWeek)
+
+<br />Message from TempData is: @TempData["Message"]
+<br />The day from TempData is: @(((DateTime)TempData["Date"]).DayOfWeek)
