@@ -1,0 +1,79 @@
+﻿@model HelperMethods.Models.PartialPerson
+
+@{
+    ViewBag.Title = "CreatePerson";
+    Html.EnableClientValidation(false);
+}
+
+@section styles {
+    <style>
+        h2 > label {
+            width: inherit;
+        }
+
+        .editor-label, .editor-field {
+            float: left;
+            margin-top: 10px;
+        }
+
+            .editor-field input {
+                height: 20px;
+            }
+
+        .editor-label {
+            clear: left;
+        }
+
+        .editor-field {
+            margin-left: 10px;
+        }
+
+        input[type=submit] {
+            float: left;
+            clear: both;
+            margin-top: 10px;
+        }
+
+        .column {
+            float: left;
+            margin: 10px;
+        }
+    </style>
+}
+
+<h2>CreatePerson: @Html.LabelForModel()</h2>
+
+@using (Html.BeginRouteForm("FormRoute", new { }, FormMethod.Post, new { @class = "personClass", data_formType = "person" }))
+{
+    @*<div class="form-group">
+            <label>PersonID</label>
+            @Html.Editor("PersonID")
+        </div>
+        <div class="form-group">
+            <label>First Name</label>
+            @Html.Editor("FirstName")
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            @Html.EditorFor(p => p.LastName)
+        </div>
+        <div class="form-group">
+            <label>Role</label>
+            @Html.EditorFor(p => p.Role)
+        </div>
+        <div class="form-group">
+            <label>Birth Date</label>
+            @Html.EditorFor(p => p.BirthDate)
+        </div>*@
+    @*@Html.EditorForModel()*@
+
+    <div class="form-group">
+        @Html.EditorForModel()
+    </div>
+    <div class="form-group">
+        @Html.EditorFor(m => m.HomeAddress)
+        @*@Html.EditorFor(m => m.HomeAddress, "AddressTemplate")*@
+    </div>
+
+    <input type="submit" value="Submit" />
+}

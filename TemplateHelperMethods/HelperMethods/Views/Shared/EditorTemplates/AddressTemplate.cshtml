@@ -1,0 +1,27 @@
+﻿@model HelperMethods.Models.Address
+
+<h3>From Address Template</h3>
+<div class="form-group">
+    @Html.LabelFor(p => p.Line1)
+    @Html.EditorFor(p => p.Line1)
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.Line2)
+    @Html.EditorFor(p => p.Line2)
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.City)
+    @Html.EditorFor(p => p.City)
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.PostalCode)
+    @Html.EditorFor(p => p.PostalCode)
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.Country)
+    @Html.EditorFor(p => p.Country)
+</div>

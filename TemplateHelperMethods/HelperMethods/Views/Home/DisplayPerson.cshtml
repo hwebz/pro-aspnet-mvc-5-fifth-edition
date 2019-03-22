@@ -1,0 +1,32 @@
+﻿@model HelperMethods.Models.Person
+
+@{
+    ViewBag.Title = "DisplayPerson";
+}
+
+<h2>DisplayPerson</h2>
+<div class="form-group">
+    @Html.Label("PersonId")
+    @Html.Display("PersonId")
+</div>
+
+<div class="form-group">
+    @Html.Label("FirstName")
+    @Html.Display("FirstName")
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.LastName)
+    @Html.DisplayFor(p => p.LastName)
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.Role)
+    @Html.DisplayFor(p => p.Role)
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.BirthDate)
+    @Html.DisplayFor(p => p.BirthDate)
+</div>
+

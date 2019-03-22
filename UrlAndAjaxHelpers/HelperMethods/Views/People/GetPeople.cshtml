@@ -1,0 +1,114 @@
+﻿@using HelperMethods.Models
+@*@model IEnumerable<PartialPerson>*@
+@model string
+
+@{
+    ViewBag.Title = "GetPeople";
+
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "tableBody",
+        LoadingElementId = "loading",
+        LoadingElementDuration = 1000,
+        //Url = Url.Action("GetPeopleAjax"),
+        Url = Url.Action("GetPeopleData"),
+        OnSuccess = "processData",
+        Confirm = "Do you wish to request new data?"
+    };
+}
+
+<script>
+    function OnBegin() {
+        alert("This is the OnBegin Callback");
+    }
+
+    function OnSuccess(data) {
+        alert("This is the OnSuccessCallback: " + data);
+    }
+
+    function OnFailure(request, error) {
+        alert("This is the OnFailure Callback: " + error);
+    }
+
+    function OnComplete(request, status) {
+        alert("This is the OnComplete Callback: " + status);
+    }
+
+    function processData(data) {
+        var target = $("#tableBody");
+        target.empty();
+        for (var i = 0; i < data.length; i++) {
+            var person = data[i];
+            target.append("<tr><td>" + person.FirstName + "</td><td>" + person.LastName + "</td><td>" + person.Role + "</td></tr>");
+        }
+    }
+</script>
+
+<h2>Get People</h2>
+<p id="loading" style="display: none;">Loading people....</p>
+<table class="table table-striped table-bodered table-responsive">
+    <thead>
+        <tr>
+            <th>First</th>
+            <th>Last</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+        @*@foreach(PartialPerson p in Model)
+        {
+            <tr>
+                <td>@p.FirstName</td>
+                <td>@p.LastName</td>
+                <td>@p.Role</td>
+            </tr>
+        }*@
+        @Html.Action("GetPeopleAjax", new { selectedRole = Model })
+    </tbody>
+</table>
+
+@*@using(Html.BeginForm())*@
+@*@using(Ajax.BeginForm("GetPeopleAjax", ajaxOpts))*@
+@using(Ajax.BeginForm(ajaxOpts))
+{
+    <div>
+        @Html.DropDownList("selectedRole", new SelectList(new[] { "All" }.Concat(Enum.GetNames(typeof(Role)))))
+        <button type="submit">Submit</button>
+    </div>
+}
+
+<div>
+    @foreach(string role in Enum.GetNames(typeof(Role)).Concat(new[] { "All" })) {
+    <div class="ajaxLink">
+        @*@Ajax.ActionLink(
+        role,
+        "GetPeople",
+        new { selectedRole = role },
+        new AjaxOptions {
+            UpdateTargetId = "tableBody",
+            Url = Url.Action("GetPeopleAjax", new { selectedRole = role }),
+            OnBegin = "OnBegin",
+            OnFailure = "OnFailure",
+            OnSuccess = "OnSuccess",
+            OnComplete = "OnComplete"
+        })*@
+        @*@Ajax.ActionLink(
+        role,
+        "GetPeople",
+        new { selectedRole = role },
+        new AjaxOptions {
+            UpdateTargetId = "tableBody",
+            Url = Url.Action("GetPeopleDataJson", new { selectedRole = role }),
+            OnSuccess = "processData",
+        })*@
+        @Ajax.ActionLink(
+               role,
+               "GetPeople",
+               new { selectedRole = role },
+               new AjaxOptions {
+                   Url = Url.Action("GetPeopleData", new { selectedRole = role }),
+                   OnSuccess = "processData",
+               })
+    </div>
+    }
+</div>

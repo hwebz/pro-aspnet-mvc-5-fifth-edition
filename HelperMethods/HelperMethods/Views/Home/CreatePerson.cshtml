@@ -1,0 +1,88 @@
+﻿@model HelperMethods.Models.Person
+
+@{
+    ViewBag.Title = "CreatePerson";
+}
+
+@section styles {
+
+}
+
+<h2>CreatePerson</h2>
+
+@using (Html.BeginRouteForm("FormRoute", new { }, FormMethod.Post, new { @class = "personClass", data_formType = "person" }))
+{
+    <div class="form-group">
+        <label>PersonID</label>
+        @*@Html.TextBox("personId", Model.PersonId)*@
+        @*@Html.TextBox("personId")*@
+        @Html.TextBoxFor(p => p.PersonId)
+    </div>
+    <div class="form-group">
+        <label>First Name</label>
+        @*@Html.TextBox("firstName", Model.FirstName)*@
+        @*@Html.TextBox("firstName")*@
+        @Html.TextBoxFor(p => p.FirstName)
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+        @*@Html.TextBox("lastName", Model.LastName)*@
+        @*@Html.TextBox("lastName")*@
+        @Html.TextBoxFor(p => p.LastName)
+    </div>
+    <div class="form-group">
+        <label>Role</label>
+        @Html.DropDownListFor(p => p.Role, new SelectList(Enum.GetNames(typeof(HelperMethods.Models.Role))))
+    </div>
+    <input type="submit" value="Submit" />
+}
+
+@*@using(Html.BeginForm("CreatePerson", "Home", new { id = "MyIdValue" }, FormMethod.Post, new { @class = "personClass", data_formType = "person" }))*@
+@*@using(Html.BeginRouteForm("FormRoute", new { }, FormMethod.Post, new { @class = "personClass", data_formType = "person" }))
+    {
+        <div class="form-group">
+            <label>PersonID</label>
+            <input name="PersonId" value="@Model.PersonId" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>First Name</label>
+            <input name="FirstName" value="@Model.FirstName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input name="LastName" value="@Model.LastName" class="form-control" />
+        </div>
+        <input type="submit" value="Submit" />
+    }*@
+
+@*@{Html.BeginForm();}
+        <div class="form-group">
+            <label>PersonID</label>
+            <input name="PersonId" value="@Model.PersonId" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>First Name</label>
+            <input name="FirstName" value="@Model.FirstName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input name="LastName" value="@Model.LastName" class="form-control" />
+        </div>
+        <input type="submit" value="Submit" />
+    @{Html.EndForm();}*@
+
+@*<form action="/Home/CreatePerson" method="post">
+        <div class="form-group">
+            <label>PersonID</label>
+            <input name="PersonId" value="@Model.PersonId" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>First Name</label>
+            <input name="FirstName" value="@Model.FirstName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input name="LastName" value="@Model.LastName" class="form-control" />
+        </div>
+        <input type="submit" value="Submit" />
+    </form>*@

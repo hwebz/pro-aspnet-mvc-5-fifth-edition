@@ -1,0 +1,33 @@
+﻿@model MvcModels.Models.Person
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    <label>ID:</label>
+    <p>@Html.DisplayFor(m => m.PersonId)</p>
+</div>
+<div>
+    <label>Firstname:</label>
+    <p>@Html.DisplayFor(m => m.FirstName)</p>
+</div>
+<div>
+    <label>Lastname:</label>
+    <p>@Html.DisplayFor(m => m.LastName)</p>
+</div>
+<div>
+    <label>Role:</label>
+    <p>@Html.DisplayFor(m => m.Role)</p>
+</div>
+
+<div>
+    <label>City:</label>
+    <p>@Html.DisplayFor(m => m.HomeAddress.City)</p>
+</div>
+
+<div>
+    <label>Country:</label>
+    <p>@Html.DisplayFor(m => m.HomeAddress.Country)</p>
+</div>
