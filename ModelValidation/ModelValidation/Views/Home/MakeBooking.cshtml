@@ -1,0 +1,28 @@
+﻿@model ModelValidation.Models.Appointment
+
+@{
+    ViewBag.Title = "MakeBooking";
+}
+
+<h2>Book an Appointment</h2>
+
+@using (Html.BeginForm("MakeBooking", "Home", FormMethod.Post, new { novalidate = true }))
+{
+    @Html.ValidationSummary(true)
+    <div class="form-group">
+        <label>Your name:</label>
+        @Html.EditorFor(m => m.ClientName)
+        @Html.ValidationMessageFor(m => m.ClientName)
+    </div>
+    <div class="form-group">
+        <label>Appointment Date:</label>
+        @Html.EditorFor(m => m.Date)
+        @Html.ValidationMessageFor(m => m.Date)
+    </div>
+    <div class="form-group">
+        @Html.EditorFor(m => m.TermsAccepted) I accept the terms & conditions
+        @Html.ValidationMessageFor(m => m.TermsAccepted)
+    </div>
+    <input type="submit" value="Make Booking" />
+}
+
